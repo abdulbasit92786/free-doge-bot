@@ -1,0 +1,9 @@
+{
+  "name": "Free Doge WebApp",
+  "short_name": "FreeDoge",
+  "description": "Tap to earn Free Dogecoin using Telegram WebApp.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffc107"
+}
