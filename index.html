@@ -1,27 +1,23 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Free Doge - Tap to Earn</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      body { font-family: Arial; text-align: center; background: #f9f9f9; }
-      .tap-btn { padding: 20px 40px; background: #ffc107; font-size: 24px; border: none; border-radius: 10px; }
-      #balance { font-size: 28px; margin-top: 30px; }
-    </style>
-  </head>
-  <body>
-    <h1>💸 Free Doge</h1>
-    <p>👆 Tap to earn Dogecoin</p>
-    <button class="tap-btn" onclick="tap()">Tap</button>
-    <div id="balance">Balance: 0 DOGE</div>
-    <script>
-      let balance = 0;
-      function tap() {
-        balance += 0.0001;
-        document.getElementById("balance").innerText = "Balance: " + balance.toFixed(4) + " DOGE";
-        Telegram.WebApp.sendData(JSON.stringify({ balance: balance }));
-      }
-      Telegram.WebApp.ready();
-    </script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Free Doge - Tap to Earn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>🐶 Free Doge</h1>
+    <div id="balance">💰 Balance: <span id="balanceAmount">0</span> DOGE</div>
+    <img id="dogeImage" src="doge.png" alt="Tap Doge" />
+    <div class="buttons">
+      <button onclick="openReferral()">👥 Referral</button>
+      <button onclick="openWithdraw()">💸 Withdraw</button>
+      <button onclick="openTasks()">📺 Earn (PTC/Video)</button>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
 </html>
