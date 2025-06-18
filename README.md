@@ -1,15 +1,14 @@
-# Free Doge - Tap to Earn (Telegram WebApp)
+# Free Doge - Tap to Earn Telegram WebApp
 
-یہ ایک آسان Telegram WebApp ہے جس میں یوزر ٹیپ کرکے فری ڈوج کوائن جمع کرتا ہے۔
+💡 Rebrand of Hamster Kombat with a Dogecoin theme. Includes:
+- Tap to Earn interface
+- Referral system
+- Balance tracking
+- Telegram WebApp integration
 
-## 👇 فیچرز:
-- ٹیپ کرنے پر بیلنس بڑھتا ہے
-- Telegram WebApp سے کنیکٹ ہوتا ہے
-- آپ Telegram کے "Open App" بٹن سے اسے استعمال کر سکتے ہیں
+## How to Use
+1. Upload to GitHub Pages or Vercel/Netlify.
+2. Connect to Telegram Bot via `setGameScore` or web app button.
+3. Enjoy earning DOGE!
 
-### 📌 GitHub پر اپلوڈ کرنے کا طریقہ:
-1. GitHub پر ریپوزیٹری بنائیں
-2. "Add file > Create new file" پر کلک کریں
-3. فائل کا نام دیں `index.html`، پھر اس کا کوڈ پیسٹ کریں
-4. دوسری فائل کے لیے بھی یہی طریقہ (e.g. `manifest.json`)
-5. `README.md` بھی اسی طرح بنائیں
+Created by Abdul Basit
