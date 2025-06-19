@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Withdraw</title>
+  <meta charset="UTF-8">
+  <title>Withdraw - Free DOGE</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="container">
-    <h2>💸 Withdraw</h2>
-    <p>Minimum Withdraw: 5 DOGE</p>
-    <form>
-      <input type="text" placeholder="Your DOGE Wallet Address" required style="width:90%; padding:10px;"><br><br>
-      <input type="number" placeholder="Amount (DOGE)" required style="width:90%; padding:10px;"><br><br>
-      <button type="submit">Request Withdraw</button>
-    </form>
-    <br>
-    <h3>📜 Withdraw History</h3>
-    <p>No records yet.</p>
-    <button onclick="location.href='index.html'">⬅ Back</button>
+<body class="page">
+
+  <div class="card">
+    <h2>Withdraw</h2>
+
+    <label for="dogeAddress">Your DOGE Wallet Address:</label>
+    <input type="text" id="dogeAddress" placeholder="Dxxxxxx..." />
+
+    <label for="amount">Amount to Withdraw:</label>
+    <input type="number" id="amount" placeholder="Enter amount" />
+
+    <button onclick="submitWithdraw()">Submit Request</button>
+
+    <div id="response" style="margin-top: 10px; color: limegreen;"></div>
   </div>
+
+  <script src="withdraw.js"></script>
 </body>
 </html>
