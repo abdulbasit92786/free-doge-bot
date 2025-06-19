@@ -1,0 +1,15 @@
+function completeTask(index) {
+  // existing task logic
+  tasks[index].completed = true;
+  localStorage.setItem("cpaTasks", JSON.stringify(tasks));
+  updateTasks();
+
+  // Add earning
+  const reward = 0.5; // or whatever your reward is
+  let cpaBalance = parseFloat(localStorage.getItem("cpaBalance") || "0");
+  cpaBalance += reward;
+  localStorage.setItem("cpaBalance", cpaBalance.toString());
+
+  // Referral bonus logic
+  giveReferralBonus(0.2); // bonus for inviter
+}
