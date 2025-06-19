@@ -1,0 +1,31 @@
+<!-- file: referral-stats.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Referral Stats</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard">
+  <div class="container">
+    <h2>👥 Referral Earnings</h2>
+    <div id="stats"></div>
+    <a class="back-button" href="index.html">← Back to Dashboard</a>
+  </div>
+
+  <script>
+    const stats = document.getElementById("stats");
+    const referrals = JSON.parse(localStorage.getItem("referralEarnings") || "{}");
+
+    if (Object.keys(referrals).length === 0) {
+      stats.innerHTML = "<p>No referral earnings yet.</p>";
+    } else {
+      for (let ref in referrals) {
+        const p = document.createElement("p");
+        p.textContent = `👤 ${ref} → 💰 ${referrals[ref]} DOGE earned`;
+        stats.appendChild(p);
+      }
+    }
+  </script>
+</body>
+</html>
