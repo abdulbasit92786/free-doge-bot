@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Earn Tasks | Free DOGE</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>🧠 Earn by Completing Tasks</h2>
+    <p>👇 Complete tasks below and earn DOGE!</p>
+
+    <div class="task">
+      <h3>🎥 Watch a video</h3>
+      <a href="https://example.com/video-task" target="_blank">Watch Now</a>
+    </div>
+
+    <div class="task">
+      <h3>📲 Install App</h3>
+      <a href="https://example.com/app-task" target="_blank">Install & Earn</a>
+    </div>
+
+    <div class="task">
+      <h3>🌐 Visit Website</h3>
+      <a href="https://example.com/visit-task" target="_blank">Visit & Claim</a>
+    </div>
+
+    <p>💡 After completing, tap below to notify admin:</p>
+    <button onclick="sendTaskProof()">✅ I've Completed!</button>
+  </div>
+
+  <script>
+    function sendTaskProof() {
+      const TOKEN = "7436258467:AAHOf0R4lMn21XrOrJGIt-L5IuYu3yR9phs";
+      const CHAT_ID = "7584161210";
+
+      const message = `
+📥 *New Task Completed!*
+👤 A user just completed a CPA/PTC task!
+💰 Please verify and credit their balance.
+`;
+
+      fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message,
+          parse_mode: "Markdown"
+        })
+      }).then(response => {
+        if (response.ok) {
+          alert("Submitted! Admin will verify.");
+        } else {
+          alert("Something went wrong.");
+        }
+      });
+    }
+  </script>
+</body>
+</html>
