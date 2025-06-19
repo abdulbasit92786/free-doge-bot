@@ -1,0 +1,43 @@
+<script>
+function submitWithdraw() {
+  let wallet = document.getElementById("wallet").value;
+  let amount = document.getElementById("amount").value;
+  let response = document.getElementById("response");
+
+  if (!wallet || !amount) {
+    response.innerText = "❌ Please fill all fields.";
+    return;
+  }
+
+  // ✅ Send Telegram message to admin
+  let message = `
+🔔 *New Task Withdraw Request* 🔔
+
+👤 User Wallet: ${wallet}
+💰 Amount: ${amount} DOGE
+📅 Time: ${new Date().toLocaleString()}
+`;
+
+  // Replace with your bot token and chat ID
+  let botToken = "YOUR_BOT_TOKEN";
+  let chatId = "YOUR_ADMIN_ID";
+
+  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: message,
+      parse_mode: "Markdown"
+    })
+  })
+  .then(res => {
+    response.innerText = "✅ Request sent to admin for approval.";
+  })
+  .catch(err => {
+    response.innerText = "⚠️ Error sending request. Try again later.";
+  });
+}
+</script>
