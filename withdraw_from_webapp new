@@ -1,0 +1,13 @@
+let payload = JSON.parse(content.text);
+
+if (payload.command === "withdraw_from_webapp") {
+  let wallet = payload.wallet;
+  let amount = payload.amount;
+
+  let log = `📥 *New Withdraw Request*\n\n👤 User: [${user.first_name}](tg://user?id=${user.telegramid})\n💼 Wallet: \`${wallet}\`\n💰 Amount: *${amount} DOGE*`;
+
+  Bot.runCommand("withdraw_from_webapp", {
+    wallet: wallet,
+    amount: amount
+  });
+}
