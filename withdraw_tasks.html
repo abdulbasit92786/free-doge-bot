@@ -19,23 +19,42 @@
     <button onclick="submitWithdraw()">🚀 Request Withdraw</button>
     <p id="response"></p>
 
-    <a href="tasks.html"><button>⬅️ Back</button></a>
+    <div class="buttons">
+      <a href="tasks.html"><button>⬅️ Back</button></a>
+    </div>
   </div>
 
   <script>
     function submitWithdraw() {
-      let wallet = document.getElementById("wallet").value;
-      let amount = document.getElementById("amount").value;
+      let wallet = document.getElementById("wallet").value.trim();
+      let amount = parseFloat(document.getElementById("amount").value.trim());
       let response = document.getElementById("response");
 
-      if (!wallet || !amount) {
+      if (!wallet || isNaN(amount)) {
         response.innerText = "❌ Please fill all fields.";
         return;
       }
 
-      response.innerText = "✅ Withdrawal requested. Admin will verify and send your DOGE.";
-      
-      // OPTIONAL: Telegram bot API call can be triggered here
+      if (amount < 3) {
+        response.innerText = "❌ Minimum withdraw amount is 3 DOGE.";
+        return;
+      }
+
+      response.innerText = "✅ Withdrawal request submitted. Please wait for admin approval.";
+
+      // ✅ OPTIONAL: Send data to Telegram bot (you can connect this with Telegram Bot API)
+      /*
+      fetch("https://api.telegram.org/bot<YOUR_BOT_TOKEN>/sendMessage", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          chat_id: "<ADMIN_USER_ID>",
+          text: `📥 New Task Withdraw Request:\n\n👛 Wallet: ${wallet}\n💰 Amount: ${amount} DOGE`
+        })
+      });
+      */
     }
   </script>
 </body>
