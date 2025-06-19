@@ -41,3 +41,21 @@ button:hover {
   font-weight: bold;
   word-break: break-all;
 }
+.task {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  box-shadow: 0 0 10px #ccc;
+}
+.task h3 {
+  margin: 0 0 10px;
+}
+.task a {
+  display: inline-block;
+  padding: 10px;
+  background: #ff9900;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+}
