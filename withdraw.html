@@ -1,26 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
   <title>Withdraw</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>💸 Withdraw</h1>
-    <p>Your Balance: <span id="balance">0</span> DOGE</p>
-    <p>Enter Wallet Address:</p>
-    <input type="text" id="wallet" placeholder="Doge Wallet Address">
-    <p>Amount:</p>
-    <input type="number" id="amount" placeholder="Min 10 DOGE">
-    <br /><br />
-    <button onclick="submitWithdraw()">Submit Withdraw</button>
-    <p style="margin-top: 20px;">Withdrawal History will be displayed here.</p>
+    <h2>💸 Withdraw</h2>
+    <p>Minimum Withdraw: 5 DOGE</p>
+    <form>
+      <input type="text" placeholder="Your DOGE Wallet Address" required style="width:90%; padding:10px;"><br><br>
+      <input type="number" placeholder="Amount (DOGE)" required style="width:90%; padding:10px;"><br><br>
+      <button type="submit">Request Withdraw</button>
+    </form>
+    <br>
+    <h3>📜 Withdraw History</h3>
+    <p>No records yet.</p>
+    <button onclick="location.href='index.html'">⬅ Back</button>
   </div>
-  <script>
-    function submitWithdraw() {
-      alert("Request Submitted! ✅ Will be processed after task verification.");
-    }
-  </script>
 </body>
 </html>
