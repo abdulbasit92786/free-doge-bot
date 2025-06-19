@@ -2,22 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Free Doge - Tap to Earn</title>
+  <title>Free DOGE - Tap to Earn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-image: url('https://raw.githubusercontent.com/hassenahassena/freedoge/main/A_2D_digital_illustration_features_Dogecoin-themed.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      min-height: 100vh;
+      color: #fff;
+      text-align: center;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .logo {
+      width: 120px;
+      margin-top: 30px;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #ffd700;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 20px 0;
+      color: #ffffff;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    .balance {
+      font-size: 20px;
+      margin: 15px 0;
+      color: #00ffcc;
+    }
+
+    .doge-img {
+      width: 180px;
+      cursor: pointer;
+      margin: 20px 0;
+      transition: transform 0.1s ease;
+    }
+
+    .doge-img:active {
+      transform: scale(0.9);
+    }
+
+    .btn {
+      background: #ffc107;
+      color: #000;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    }
+
+    .btn:hover {
+      background: #ffda4d;
+    }
+
+    .note {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #ffffff;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>🐶 Free Doge</h1>
-    <div id="balance">💰 Balance: <span id="balanceAmount">0</span> DOGE</div>
-    <img id="dogeImage" src="doge.png" alt="Tap Doge" />
-    <div class="buttons">
-      <button onclick="openReferral()">👥 Referral</button>
-      <button onclick="openWithdraw()">💸 Withdraw</button>
-      <button onclick="openTasks()">📺 Earn (PTC/Video)</button>
+    <img src="https://cryptologos.cc/logos/dogecoin-doge-logo.png" alt="Doge Logo" class="logo">
+    <h1>Free DOGE - Tap to Earn</h1>
+    <div class="balance">💰 Balance: <span id="balance">0</span> DOGE</div>
+    <img src="https://cdn.pixabay.com/photo/2021/08/05/06/38/dogecoin-6522370_1280.png" alt="Tap Doge" class="doge-img" onclick="earnDoge()">
+    <div>
+      <button class="btn" onclick="invite()">📨 Invite Friends</button>
+      <button class="btn" onclick="withdraw()">💸 Withdraw</button>
     </div>
+    <div class="note">Tap the Doge to earn coins. Invite your friends to earn more!</div>
   </div>
-  <script src="main.js"></script>
+
+  <script>
+    let balance = 0;
+    function earnDoge() {
+      balance += 0.5; // Add 0.5 DOGE per tap
+      document.getElementById("balance").innerText = balance.toFixed(2);
+    }
+
+    function invite() {
+      alert("👥 Share this link with your friends: https://t.me/YourBot?start=YourUserID");
+    }
+
+    function withdraw() {
+      alert("💸 Withdrawal option coming soon via tasks!");
+    }
+  </script>
 </body>
-</html>
+  </html>
