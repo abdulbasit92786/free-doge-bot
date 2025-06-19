@@ -10,8 +10,10 @@
   <div class="container">
     <h1>🐶 Free DOGE</h1>
     <h3>Click on Doge to Earn!</h3>
+
     <img src="doge.png" id="doge" alt="doge image">
-    <p id="score">Total DOGE: <span id="counter">0</span></p>
+    <p id="score">Total DOGE (Taps): <span id="counter">0</span></p>
+    <p>📊 Task Earnings: <span id="taskEarnings">0</span> DOGE</p>
 
     <div class="buttons">
       <a href="withdraw.html"><button>💸 Withdraw</button></a>
@@ -25,5 +27,9 @@
 
   <script src="main.js"></script>
   <script src="referral.js"></script>
+  <script>
+    let taskEarnings = localStorage.getItem("taskEarnings") || 0;
+    document.getElementById("taskEarnings").innerText = taskEarnings;
+  </script>
 </body>
-</html>
+  </html>
