@@ -2,52 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Free DOGE - Tap to Earn</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="main.js" defer></script>
 </head>
 <body>
-  <div class="app">
-    <header>
-      <h1>🐶 Free DOGE</h1>
-      <p>Tap to Earn | Invite & Withdraw</p>
-    </header>
-
-    <main>
-      <div class="doge-tap-area" onclick="tapDoge()">
-        <img src="doge.png" alt="Tap Doge" />
-        <p>🔥 Taps: <span id="tap-count">0</span></p>
-      </div>
-
-      <div class="buttons">
-        <button onclick="showReferral()">👥 Referral</button>
-        <button onclick="showWithdraw()">💸 Withdraw</button>
-      </div>
-    </main>
-
-    <footer>
-      <p>Powered by Dogecoin Blockchain</p>
-    </footer>
+  <div class="background"></div>
+  <div class="container">
+    <h1>🐶 Free DOGE</h1>
+    <div class="balance-section">
+      <p>Balance: <span id="balance">0</span> DOGE</p>
+      <p>Energy: <span id="energy">100</span></p>
+    </div>
+    <div class="tap-area" onclick="earnDoge()">
+      <img src="doge.png" alt="Tap Doge" class="doge-img" />
+    </div>
+    <div class="buttons">
+      <button onclick="openWithdraw()">💸 Withdraw</button>
+      <button onclick="openReferral()">👥 Referrals</button>
+    </div>
   </div>
-
-  <div id="referral-section" class="modal hidden">
-    <h2>Referral</h2>
-    <p>Your Link:</p>
-    <input type="text" value="https://t.me/YourBot?start=12345" readonly />
-    <p>🎁 You earn 20% of each referral's taps!</p>
-    <button onclick="closeModal()">Close</button>
-  </div>
-
-  <div id="withdraw-section" class="modal hidden">
-    <h2>Withdraw</h2>
-    <p>Total Balance: <span id="balance">0</span> DOGE</p>
-    <p>Minimum Withdraw: 50 DOGE</p>
-    <input type="text" placeholder="Enter Wallet Address"/>
-    <input type="number" placeholder="Enter Amount"/>
-    <button>Submit Withdraw</button>
-    <button onclick="closeModal()">Close</button>
-  </div>
-
-  <script src="main.js"></script>
 </body>
 </html>
