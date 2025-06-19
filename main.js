@@ -1,18 +1,21 @@
+let taps = 0;
 let balance = 0;
 
-document.getElementById("dogeImage").addEventListener("click", function(){
+function tapDoge() {
+  taps++;
   balance += 1;
-  document.getElementById("balanceAmount").innerText = balance;
-});
-
-function openReferral(){
-  Telegram.WebApp.openTelegramLink("https://t.me/share/url?url=https://t.me/basitpkrbot&text=Join%20Free%20Doge%20Now!");
+  document.getElementById("tap-count").innerText = taps;
+  document.getElementById("balance").innerText = balance;
 }
 
-function openWithdraw(){
-  alert("Withdraw via task completion platforms.\nSoon you'll be able to withdraw using Cointiply/Timebucks.");
+function showReferral() {
+  document.getElementById("referral-section").classList.remove("hidden");
 }
 
-function openTasks(){
-  window.location.href = "https://www.cointiply.com/";
+function showWithdraw() {
+  document.getElementById("withdraw-section").classList.remove("hidden");
+}
+
+function closeModal() {
+  document.querySelectorAll(".modal").forEach(modal => modal.classList.add("hidden"));
 }
