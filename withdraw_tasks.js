@@ -25,8 +25,8 @@ function submitWithdraw() {
   localStorage.setItem("withdrawHistory", JSON.stringify(history));
 
   // ✅ Send Telegram Message to Admin via Bot API
-  const adminId = "PASTE_ADMIN_ID_HERE"; // 🧑‍💻 Replace this
-  const botToken = "PASTE_BOT_TOKEN_HERE"; // 🔐 Replace this
+  const adminId = "7584161210"; // 🧑‍💻 Replace this
+  const botToken = "7436258467:AAHOf0R4lMn21XrOrJGIt-L5IuYu3yR9phs"; // 🔐 Replace this
 
   const message = `🚀 *New Withdraw Request*\n\n👤 User: [Tap User]\n💳 Wallet: ${wallet}\n💰 Amount: ${amount} DOGE\n📅 Date: ${new Date().toLocaleString()}`;
 
