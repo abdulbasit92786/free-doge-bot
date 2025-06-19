@@ -25,6 +25,12 @@
       border-radius: 5px;
       cursor: pointer;
     }
+    iframe {
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -33,17 +39,16 @@
 
     <div class="task-card">
       <h3>📺 Watch YouTube Video</h3>
-      <p>Earn 1 DOGE by watching this video.</p>
-      <a href="https://youtu.be/6PNL6h4IxeI?si=K_VbwBE7HpBfHAJm" target="_blank">
-        <button>▶️ Watch Now</button>
-      </a>
+      <p>Earn 1 DOGE by watching this video below.</p>
+      <iframe src="https://www.youtube.com/embed/6PNL6h4IxeI" frameborder="0" allowfullscreen></iframe>
+      <button onclick="submitTask(1)">✅ I Watched It</button>
     </div>
 
     <div class="task-card">
       <h3>🌐 Visit a Website</h3>
       <p>Earn 0.5 DOGE by visiting this site.</p>
       <a href="https://abdulbasit92786.github.io/free-doge-bot/" target="_blank">
-        <button>🌍 Visit Site</button>
+        <button onclick="submitTask(0.5)">🌍 Visit & Earn</button>
       </a>
     </div>
 
@@ -51,11 +56,48 @@
       <h3>👥 Join Telegram Group</h3>
       <p>Earn 2 DOGE by joining our official group.</p>
       <a href="https://t.me/bainancefree92" target="_blank">
-        <button>📲 Join Now</button>
+        <button onclick="submitTask(2)">📲 Join Now</button>
       </a>
     </div>
 
     <a href="index.html"><button style="margin-top: 20px;">🔙 Back</button></a>
   </div>
+
+  <script>
+    function submitTask(earning) {
+      // Update localStorage
+      let prev = parseFloat(localStorage.getItem("taskEarnings") || 0);
+      let updated = prev + earning;
+      localStorage.setItem("taskEarnings", updated.toFixed(2));
+
+      // Notify admin via Telegram
+      const TOKEN = "7436258467:AAHOf0R4lMn21XrOrJGIt-L5IuYu3yR9phs";
+      const CHAT_ID = "7584161210";
+
+      const message = `
+📥 *Task Completed!*
+💰 Earned: ${earning} DOGE
+📊 Total now: ${updated.toFixed(2)} DOGE
+`;
+
+      fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message,
+          parse_mode: "Markdown"
+        })
+      }).then(res => {
+        if (res.ok) {
+          alert(`✅ You earned ${earning} DOGE!`);
+        } else {
+          alert("❌ Could not notify admin.");
+        }
+      });
+    }
+  </script>
 </body>
 </html>
