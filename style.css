@@ -1,62 +1,46 @@
-body {
+body.dashboard {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #ffc371, #ff5f6d);
-  color: #fff;
+  background: linear-gradient(to bottom right, #ffdf9e, #ffe3b3);
+  color: #333;
+}
+
+.dashboard-container {
+  padding: 20px;
   text-align: center;
 }
 
-header {
-  padding: 1rem;
-  background-color: rgba(0,0,0,0.3);
+h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
 }
 
-main {
-  padding: 2rem;
-}
-
-.doge-tap-area {
+.doge-section {
   margin: 20px auto;
-  max-width: 300px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 20px;
-  padding: 1rem;
 }
 
-.doge-tap-area img {
-  width: 100%;
-  border-radius: 20px;
+.doge-section img {
+  width: 180px;
+  height: auto;
   cursor: pointer;
 }
 
-.buttons {
-  margin-top: 20px;
+.menu {
+  margin-top: 25px;
 }
 
-.buttons button {
+.menu-btn {
+  display: inline-block;
   margin: 10px;
-  padding: 12px 24px;
-  font-size: 16px;
+  padding: 12px 20px;
+  background-color: #ffb347;
   border: none;
-  border-radius: 12px;
-  background: #fff;
-  color: #ff5f6d;
+  border-radius: 6px;
+  color: #000;
+  text-decoration: none;
   font-weight: bold;
-  cursor: pointer;
 }
 
-.modal {
-  position: fixed;
-  top: 20%;
-  left: 10%;
-  width: 80%;
-  background: white;
-  color: black;
-  padding: 20px;
-  border-radius: 15px;
-  z-index: 999;
-}
-
-.hidden {
-  display: none;
+.ref-link {
+  margin-top: 20px;
 }
