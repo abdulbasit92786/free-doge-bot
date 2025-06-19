@@ -1,40 +1,28 @@
+<!-- File: index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Free DOGE – Tap to Earn</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>🐶 Free DOGE - Tap to Earn</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="container">
+    <h1>🐶 Free DOGE</h1>
+    <h3>Click on Doge to Earn!</h3>
+    <img src="doge.png" id="doge" alt="doge image">
+    <p id="score">Total DOGE: <span id="counter">0</span></p>
 
-  <div class="app-container">
-    <!-- Header -->
-    <div class="header">
-      <h1>🐶 Free DOGE</h1>
-      <p>Earn Dogecoin by tapping!</p>
+    <div class="buttons">
+      <a href="withdraw.html"><button>💸 Withdraw</button></a>
+      <a href="tasks.html"><button>🧾 Tasks</button></a>
+      <button onclick="getReferral()">📣 Invite Friends</button>
     </div>
 
-    <!-- Dogecoin Image Tappable -->
-    <div class="tap-area">
-      <img 
-        src="https://raw.githubusercontent.com/dogecoin/dogecoin/master/share/pixmaps/dogecoin128.png" 
-        alt="Tap Dogecoin to Earn!" 
-        class="tap-image" 
-        id="dogeImage"
-        onclick="tapToEarn()" 
-      />
-      <p class="tap-instruction">👇 Tap the DOGE to Earn 👇</p>
-      <p id="tapCount">Taps: 0</p>
-    </div>
-
-    <!-- Navigation -->
-    <div class="nav-buttons">
-      <button onclick="location.href='withdraw.html'">💸 Withdraw</button>
-      <button onclick="location.href='referral.html'">👥 Referrals</button>
-    </div>
+    <p id="referralLink"></p>
   </div>
 
   <script src="main.js"></script>
+  <script src="referral.js"></script>
 </body>
-  </html>
+        </html>
