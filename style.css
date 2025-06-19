@@ -1,46 +1,62 @@
-body.dashboard {
+body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom right, #ffdf9e, #ffe3b3);
-  color: #333;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
 }
 
-.dashboard-container {
-  padding: 20px;
-  text-align: center;
+.background {
+  background: url('doge_background_sample.png') no-repeat center center/cover;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+.container {
+  margin-top: 60px;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 2em;
+  color: #ffd700;
+  margin-bottom: 15px;
+}
+
+.balance-section {
   margin-bottom: 20px;
 }
 
-.doge-section {
-  margin: 20px auto;
-}
-
-.doge-section img {
+.doge-img {
   width: 180px;
-  height: auto;
+  height: 180px;
   cursor: pointer;
+  transition: transform 0.1s ease;
 }
 
-.menu {
-  margin-top: 25px;
+.doge-img:active {
+  transform: scale(0.9);
 }
 
-.menu-btn {
-  display: inline-block;
-  margin: 10px;
-  padding: 12px 20px;
-  background-color: #ffb347;
-  border: none;
-  border-radius: 6px;
-  color: #000;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.ref-link {
+.buttons {
   margin-top: 20px;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 1em;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff9800;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #e68900;
 }
