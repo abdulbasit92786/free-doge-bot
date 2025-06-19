@@ -11,7 +11,7 @@
     <h1>🐶 Free DOGE</h1>
     <h3>Click on Doge to Earn!</h3>
 
-    <img src="doge.png" id="doge" alt="doge image">
+    <img src="dogecoin-tap.png" id="doge" alt="Tap to Earn DOGE">
     <p id="score">Total DOGE (Taps): <span id="counter">0</span></p>
     <p>📊 Task Earnings: <span id="taskEarnings">0</span> DOGE</p>
 
@@ -28,8 +28,13 @@
   <script src="main.js"></script>
   <script src="referral.js"></script>
   <script>
+    // Load task earnings
     let taskEarnings = localStorage.getItem("taskEarnings") || 0;
     document.getElementById("taskEarnings").innerText = taskEarnings;
+
+    // Load tap score
+    let tapScore = parseInt(localStorage.getItem("tapCount")) || 0;
+    document.getElementById("counter").innerText = tapScore;
   </script>
 </body>
-  </html>
+</html>
