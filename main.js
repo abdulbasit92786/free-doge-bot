@@ -1,8 +1,17 @@
-let balance = 0;
-const counter = document.getElementById("counter");
-const doge = document.getElementById("doge");
+let tapCount = 0;
 
-doge.addEventListener("click", () => {
-  balance += 0.0005;
-  counter.innerText = `💰 ${balance.toFixed(4)} DOGE`;
-});
+function tapDoge() {
+  tapCount++;
+  document.getElementById("tapCount").innerText = "Taps: " + tapCount;
+  localStorage.setItem("tapCount", tapCount);
+}
+
+function loadTapCount() {
+  const savedTaps = localStorage.getItem("tapCount");
+  if (savedTaps) {
+    tapCount = parseInt(savedTaps);
+    document.getElementById("tapCount").innerText = "Taps: " + tapCount;
+  }
+}
+
+window.onload = loadTapCount;
