@@ -23,13 +23,13 @@ document.addEventListener("DOMContentLoaded", function () {
       telegramId: telegramId
     };
 
-    fetch("https://api.telegram.org/bot<YOUR_BOT_TOKEN>/sendMessage", {
+    fetch("https://api.telegram.org/bot<7436258467:AAHOf0R4lMn21XrOrJGIt-L5IuYu3yR9phs>/sendMessage", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        chat_id: <YOUR_ADMIN_CHAT_ID>,
+        chat_id: <7584161210>,
         text: `💸 New Withdraw Request:\n\n👤 User: ${telegramId}\n💰 Amount: ${amount}\n📬 Address: ${address}\n💳 Method: ${method}`
       })
     })
