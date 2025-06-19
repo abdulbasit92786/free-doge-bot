@@ -2,26 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Free DOGE - Tap to Earn</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="main.js" defer></script>
 </head>
 <body>
-  <div class="background"></div>
   <div class="container">
-    <h1>🐶 Free DOGE</h1>
-    <div class="balance-section">
-      <p>Balance: <span id="balance">0</span> DOGE</p>
-      <p>Energy: <span id="energy">100</span></p>
-    </div>
-    <div class="tap-area" onclick="earnDoge()">
-      <img src="doge.png" alt="Tap Doge" class="doge-img" />
-    </div>
-    <div class="buttons">
-      <button onclick="openWithdraw()">💸 Withdraw</button>
-      <button onclick="openReferral()">👥 Referrals</button>
+    <div class="dashboard">
+      <h1>🚀 Free DOGE</h1>
+      <p class="subtitle">Earn Dogecoin by tapping the Doge!</p>
+      <div class="tap-area">
+        <img src="doge.png" alt="Tap Doge" id="doge" />
+        <p id="counter">💰 0.0000 DOGE</p>
+      </div>
+      <div class="buttons">
+        <button onclick="location.href='referral.html'">👥 Referral</button>
+        <button onclick="location.href='withdraw.html'">💸 Withdraw</button>
+      </div>
     </div>
   </div>
+  <script src="main.js"></script>
 </body>
 </html>
