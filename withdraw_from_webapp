@@ -1,0 +1,19 @@
+let wallet = data.wallet;
+let amount = data.amount;
+let userId = user.telegramid;
+
+let log = `💸 *New Withdraw Request*\n\n👤 User: [${user.first_name}](tg://user?id=${user.telegramid})\n💰 Amount: *${amount} DOGE*\n💼 Wallet: \`${wallet}\`\n\n✅ Approve / ❌ Reject`;
+
+let inlineKeyboard = [
+  [{ text: "✅ Approve", callback_data: "/approve " + userId + "|" + amount + "|" + wallet }],
+  [{ text: "❌ Reject", callback_data: "/reject " + userId }]
+];
+
+Api.sendMessage({
+  chat_id: 123456789, // ← Replace with Admin Telegram ID
+  text: log,
+  parse_mode: "Markdown",
+  reply_markup: { inline_keyboard: inlineKeyboard }
+});
+
+Bot.sendMessage("📤 Withdraw request sent. Awaiting admin approval...");
