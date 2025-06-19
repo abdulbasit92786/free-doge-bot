@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free Doge Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard">
+  <div class="dashboard-container">
+    <h1>🐶 Free DOGE Tap-to-Earn</h1>
+
+    <div class="doge-section">
+      <img id="doge" src="images/doge.png" alt="Tap to Earn">
+      <p><strong>Taps:</strong> <span id="tapCount">0</span></p>
+    </div>
+
+    <div class="menu">
+      <a href="withdraw.html" class="menu-btn">💸 Withdraw</a>
+      <a href="#" class="menu-btn" onclick="copyReferral()">🎁 Referral</a>
+    </div>
+
+    <p class="ref-link">Your Referral: <a id="refLink" href="#">Generating...</a></p>
+  </div>
+
+  <script src="main.js"></script>
+  <script src="referral.js"></script>
+</body>
+</html>
