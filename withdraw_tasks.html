@@ -1,0 +1,42 @@
+<!-- File: withdraw_tasks.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Withdraw Task Earnings</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>💸 Withdraw Your Task Earnings</h1>
+
+    <p>👛 Enter your Dogecoin address:</p>
+    <input type="text" id="wallet" placeholder="Doge Wallet Address">
+
+    <p>💰 Enter amount to withdraw:</p>
+    <input type="number" id="amount" placeholder="Minimum 3 DOGE">
+
+    <button onclick="submitWithdraw()">🚀 Request Withdraw</button>
+    <p id="response"></p>
+
+    <a href="tasks.html"><button>⬅️ Back</button></a>
+  </div>
+
+  <script>
+    function submitWithdraw() {
+      let wallet = document.getElementById("wallet").value;
+      let amount = document.getElementById("amount").value;
+      let response = document.getElementById("response");
+
+      if (!wallet || !amount) {
+        response.innerText = "❌ Please fill all fields.";
+        return;
+      }
+
+      response.innerText = "✅ Withdrawal requested. Admin will verify and send your DOGE.";
+      
+      // OPTIONAL: Telegram bot API call can be triggered here
+    }
+  </script>
+</body>
+</html>
