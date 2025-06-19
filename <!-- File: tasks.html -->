@@ -1,0 +1,61 @@
+<!-- File: tasks.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🧠 Earn Tasks</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .task-card {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .task-card h3 {
+      margin-top: 0;
+    }
+    .task-card button {
+      margin-top: 10px;
+      background-color: #FFD700;
+      color: black;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🧠 Complete Tasks & Earn DOGE</h2>
+
+    <div class="task-card">
+      <h3>📺 Watch YouTube Video</h3>
+      <p>Earn 1 DOGE by watching this video.</p>
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+        <button>▶️ Watch Now</button>
+      </a>
+    </div>
+
+    <div class="task-card">
+      <h3>🌐 Visit a Website</h3>
+      <p>Earn 0.5 DOGE by visiting this site.</p>
+      <a href="https://example.com" target="_blank">
+        <button>🌍 Visit Site</button>
+      </a>
+    </div>
+
+    <div class="task-card">
+      <h3>👥 Join Telegram Group</h3>
+      <p>Earn 2 DOGE by joining our official group.</p>
+      <a href="https://t.me/yourgroup" target="_blank">
+        <button>📲 Join Now</button>
+      </a>
+    </div>
+
+    <a href="index.html"><button style="margin-top: 20px;">🔙 Back</button></a>
+  </div>
+</body>
+</html>
