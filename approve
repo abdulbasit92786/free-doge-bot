@@ -1,0 +1,8 @@
+let parts = params.split("|");
+let userId = parts[0];
+let amount = parts[1];
+let wallet = parts[2];
+
+Bot.sendMessageToChatWithId(userId, `✅ Your withdraw request of *${amount} DOGE* has been *Approved*. You’ll receive funds soon!\n\n💼 Wallet: \`${wallet}\``, { parse_mode: "Markdown" });
+
+Bot.sendMessage("✅ Approved and user notified.");
