@@ -1,77 +1,65 @@
-<!-- File: tasks.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8" />
-  <title>🧠 Earn Tasks | Free DOGE</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>🎥 Watch Video Task</title>
+  <style>
+    .container { max-width: 600px; margin: auto; padding: 20px; font-family: sans-serif; }
+    .btn { margin-top: 10px; padding: 10px; border: none; background: #27ae60; color: white; border-radius: 5px; cursor: pointer; }
+    .btn:disabled { background: #ccc; cursor: not-allowed; }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h2>🧠 Earn by Completing Tasks</h2>
-
-    <div class="task" id="videoTask">
-      <h3>🎥 Watch YouTube Video (Earn 1 DOGE)</h3>
-      <iframe width="100%" height="200"
-        src="https://www.youtube.com/embed/6PNL6h4IxeI"
-        frameborder="0" allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
-      <button id="btnWatch">▶️ Watch</button>
-      <button id="btnClaimVideo" disabled>✅ Claim Reward</button>
-    </div>
-
-    <div class="task" id="visitTask">
-      <h3>🌐 Visit Website (Earn 0.5 DOGE)</h3>
-      <a href="https://abdulbasit92786.github.io/free-doge-bot" target="_blank">
-        <button id="btnVisit">🚀 Visit Site</button>
-      </a>
-      <button id="btnClaimVisit" disabled>✅ Claim Reward</button>
-    </div>
-
-    <a href="index.html"><button>⬅️ Back</button></a>
+    <h2>🎥 Watch the Video (Earn 1 DOGE)</h2>
+    <div id="player"></div>
+    <button class="btn" id="claimBtn" disabled>✅ Claim Reward</button>
+    <br><br>
+    <a href="index.html"><button class="btn">⬅️ Back</button></a>
   </div>
 
   <script>
-  let videoPlayed = false, siteVisited = false;
+    let player;
+    let secondsWatched = 0;
+    let interval;
 
-  document.getElementById("btnWatch").addEventListener("click", () => {
-    videoPlayed = true;
-    localStorage.setItem("videoPlayed", Date.now());
-    alert("🔁 Please watch 30 seconds, then return here to claim.");
-  });
-  document.getElementById("btnVisit").addEventListener("click", () => {
-    siteVisited = true;
-    localStorage.setItem("siteVisited", Date.now());
-    alert("🔁 You visited the site! Now click 'Claim Reward'.");
-    document.getElementById("btnClaimVisit").disabled = false;
-  });
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '315',
+        width: '100%',
+        videoId: '6PNL6h4IxeI', // ← یہاں اپنی ویڈیو ID رکھیں
+        events: {
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
 
-  document.getElementById("btnClaimVideo").addEventListener("click", () => {
-    let t = parseInt(localStorage.getItem("videoPlayed"));
-    if (t && (Date.now() - t >= 30000)) {
-      award("video");
-      alert("✅ 1 DOGE added for video!");
-      document.getElementById("btnClaimVideo").disabled = true;
-    } else alert("❌ Wait at least 30 seconds before claiming.");
-  });
+    function onPlayerStateChange(event) {
+      if (event.data == YT.PlayerState.PLAYING) {
+        interval = setInterval(() => {
+          secondsWatched++;
+          console.log("⏱️ Watched: " + secondsWatched + " sec");
 
-  document.getElementById("btnClaimVisit").addEventListener("click", () => {
-    award("visit");
-    alert("✅ 0.5 DOGE added for visiting!");
-    document.getElementById("btnClaimVisit").disabled = true;
-  });
+          if (secondsWatched >= 30) {
+            clearInterval(interval);
+            document.getElementById("claimBtn").disabled = false;
+          }
+        }, 1000);
+      } else {
+        clearInterval(interval);
+      }
+    }
 
-  function award(type) {
-    let earned = parseFloat(localStorage.getItem("taskEarnings") || 0);
-    earned += (type == "video" ? 1 : 0.5);
-    localStorage.setItem("taskEarnings", earned.toFixed(2));
-  }
-
-  window.onload = () => {
-    document.getElementById("btnClaimVideo").disabled = !localStorage.getItem("videoPlayed");
-    document.getElementById("btnClaimVisit").disabled = !localStorage.getItem("siteVisited");
-  };
+    document.getElementById("claimBtn").addEventListener("click", () => {
+      alert("✅ 1 DOGE reward added!");
+      let earned = parseFloat(localStorage.getItem("taskEarnings") || "0");
+      earned += 1;
+      localStorage.setItem("taskEarnings", earned.toFixed(2));
+      document.getElementById("claimBtn").disabled = true;
+    });
   </script>
+
+  <!-- Load YouTube Iframe API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
 </body>
-  </html>
+</html>
