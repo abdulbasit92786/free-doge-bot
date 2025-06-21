@@ -1,18 +1,14 @@
-// main.js — Tap to Earn system
+let count = 0;
+let earnings = parseFloat(localStorage.getItem("taskEarnings")||"0");
+document.getElementById("counter").innerText = count;
+document.getElementById("taskEarnings").innerText = earnings.toFixed(2);
 
-// Initialize tap count from localStorage (optional)
-let taps = parseInt(localStorage.getItem("tapCount")) || 0;
-
-// Display initial value
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("tapCount").innerText = taps;
-});
-
-// Handle Doge image tap
-document.getElementById("doge").addEventListener("click", function () {
-  taps += 1;
-  document.getElementById("tapCount").innerText = taps;
-
-  // Save to localStorage
-  localStorage.setItem("tapCount", taps);
-});
+document.getElementById("doge").onclick = function(){
+  count++;
+  document.getElementById("counter").innerText = count;
+  if(count % 50 === 0){
+    earnings += 1;
+    localStorage.setItem("taskEarnings",earnings.toFixed(2));
+    document.getElementById("taskEarnings").innerText = earnings.toFixed(2);
+  }
+};
