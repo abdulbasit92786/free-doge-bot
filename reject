@@ -1,5 +1,0 @@
-let userId = params;
-
-Bot.sendMessageToChatWithId(userId, `❌ Your withdraw request has been *Rejected* by admin.`);
-
-Bot.sendMessage("❌ Rejected and user notified.");
