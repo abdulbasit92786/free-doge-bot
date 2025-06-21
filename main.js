@@ -1,12 +1,19 @@
-// main.js
-let counter = parseInt(localStorage.getItem("tapCount") || "0");
-let taskEarnings = parseFloat(localStorage.getItem("taskEarnings") || "0");
+// Withdraw request فنکشن
+function submitWithdrawRequest(wallet, amount) {
+  let balance = parseFloat(localStorage.getItem("taskEarnings") || "0");
+  if (!wallet || amount < 10) return; // 10 ڈوج کم از کم ویلیو
 
-document.getElementById("counter").innerText = counter;
-document.getElementById("taskEarnings").innerText = taskEarnings.toFixed(2);
+  balance -= amount;
+  localStorage.setItem("taskEarnings", balance.toFixed(2));
 
-document.getElementById("doge").addEventListener("click", () => {
-  counter++;
-  localStorage.setItem("tapCount", counter);
-  document.getElementById("counter").innerText = counter;
-});
+  let history = JSON.parse(localStorage.getItem("withdrawHistory")) || [];
+  history.push({
+    wallet,
+    amount,
+    status: "Processing",
+    date: new Date().toLocaleString()
+  });
+  localStorage.setItem("withdrawHistory", JSON.stringify(history));
+
+  alert(`✅ Withdraw Requested: ${amount} DOGE\n📌 Status: Processing`);
+}
