@@ -1,9 +1,33 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>History</title><link rel="stylesheet" href="style.css"></head>
-<body><div class="container"><h2>History</h2><div id="list"></div><a href="index.html"><button>🔙 Back</button></a></div>
-<script>
-let h= JSON.parse(localStorage.getItem("wdHistory")||"[]");
-if(h.length===0) document.getElementById("list").innerText="No history";
-else h.forEach(e=>{
-  document.getElementById("list").innerHTML+=`<p>${e.date}: ${e.amount} DOGE ➤ ${e.wallet}</p>`;
-});
-</script></body></html>
+<!-- File: withdraw_history.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>📜 Withdraw History</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>.history-container {max-width:400px;margin:auto;padding:20px;background:#fff;border-radius:10px;} .status-processing{color:#e67e22;} .status-completed{color:#27ae60;}</style>
+</head>
+<body>
+  <div class="history-container">
+    <h2>📜 Withdraw History</h2>
+    <div id="historyList"></div>
+    <button onclick="window.location='index.html'">⬅️ Back</button>
+  </div>
+
+  <script>
+  window.onload = () => {
+    let hist = JSON.parse(localStorage.getItem("withdrawHistory") || "[]");
+    let cont = document.getElementById("historyList");
+    cont.innerHTML = hist.length ? '' : "<p>No withdrawals yet.</p>";
+    hist.forEach(entry => {
+      let cls = entry.status=="Completed" ? "status-completed" : "status-processing";
+      cont.innerHTML += `<div style="margin-bottom:12px;padding:8px;border:1px solid #ddd;border-radius:6px;">
+        <strong>💰 ${entry.amount} DOGE -> ${entry.wallet}</strong><br>
+        <small>${entry.date}</small><br>
+        <span class="${cls}">${entry.status}</span>
+      </div>`;
+    });
+  };
+  </script>
+</body>
+    </html>
