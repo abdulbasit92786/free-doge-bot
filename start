@@ -1,7 +1,0 @@
-let isAdmin = user.telegramid == 123456789; // ← یہاں اپنا Telegram ID ڈالیں
-
-Bot.sendMessage("👋 Welcome to Free DOGE Tap to Earn WebApp Bot!");
-
-if (isAdmin) {
-  Bot.sendMessage("🔐 Admin Mode Activated");
-}
