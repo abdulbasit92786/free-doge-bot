@@ -1,4 +1,3 @@
-<!-- File: index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,31 +9,18 @@
   <div class="container">
     <h1>🐶 Free DOGE</h1>
     <h3>Click on Doge to Earn!</h3>
-
-    <img src="dogecoin-tap.png" id="doge" alt="Tap to Earn DOGE">
-    <p id="score">Total DOGE (Taps): <span id="counter">0</span></p>
-    <p>📊 Task Earnings: <span id="taskEarnings">0</span> DOGE</p>
-
+    <img src="doge.png" id="doge" alt="doge image">
+    <p>Total DOGE (Taps): <span id="counter">0</span></p>
+    <p>Task Earnings: <span id="taskEarnings">0</span> DOGE</p>
     <div class="buttons">
       <a href="withdraw.html"><button>💸 Withdraw</button></a>
       <a href="tasks.html"><button>🧠 Earn Tasks</button></a>
       <a href="withdraw-history.html"><button>📜 Withdraw History</button></a>
       <button onclick="getReferral()">📣 Invite Friends</button>
     </div>
-
     <p id="referralLink"></p>
   </div>
-
   <script src="main.js"></script>
   <script src="referral.js"></script>
-  <script>
-    // Load task earnings
-    let taskEarnings = localStorage.getItem("taskEarnings") || 0;
-    document.getElementById("taskEarnings").innerText = taskEarnings;
-
-    // Load tap score
-    let tapScore = parseInt(localStorage.getItem("tapCount")) || 0;
-    document.getElementById("counter").innerText = tapScore;
-  </script>
 </body>
-</html>
+  </html>
