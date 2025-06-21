@@ -1,7 +1,62 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>🧠 Tasks</title><link rel="stylesheet" href="style.css"></head><body>
-<div class="container"><h2>🧠 Earn by Tasks</h2>
-<div class="task"><h3>🎥 Watch Video</h3><iframe width="100%" height="200" src="https://www.youtube.com/embed/6PNL6h4IxeI" frameborder="0" allowfullscreen></iframe></div>
-<div class="task"><h3>✅ After done, click:</h3><button onclick="claimTask()">Claim 1 DOGE</button></div>
-<a href="index.html"><button>🔙 Back</button></a></div>
-<script src="tasks.js"></script>
-</body></html>
+<!-- tasks.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🧠 Earn Tasks | Free DOGE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>🧠 Earn by Completing Tasks</h2>
+
+    <div class="task">
+      <h3>🎥 Watch YouTube Video (Earn 1 DOGE)</h3>
+      <iframe width="100%" height="200"
+        src="https://www.youtube.com/embed/6PNL6h4IxeI"
+        frameborder="0" allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+      <button onclick="watchVideo()">▶️ Watch & Record</button>
+      <button onclick="claimReward()">✅ Claim Reward</button>
+    </div>
+
+    <div class="task">
+      <h3>🌐 Visit Website (Earn 0.5 DOGE)</h3>
+      <a href="https://abdulbasit92786.github.io/free-doge-bot" target="_blank">
+        <button onclick="recordVisit(0.5)">🏷 Visit Site</button>
+      </a>
+    </div>
+
+    <a href="index.html"><button>⬅️ Back</button></a>
+  </div>
+
+  <script>
+    function watchVideo() {
+      localStorage.setItem("lastWatch", Date.now());
+      window.open("https://youtu.be/6PNL6h4IxeI?si=K_VbwBE7HpBfHAJm", "_blank");
+    }
+
+    function claimReward() {
+      let last = parseInt(localStorage.getItem("lastWatch") || "0");
+      if (Date.now() - last >= 30000) {
+        addEarnings(1);
+        alert("✅ You earned 1 DOGE for watching the video!");
+      } else {
+        alert("❌ Please watch at least 30 seconds before claiming.");
+      }
+    }
+
+    function recordVisit(amount) {
+      addEarnings(amount);
+      alert("✅ You earned " + amount + " DOGE for visiting!");
+    }
+
+    function addEarnings(amount) {
+      let taskEarnings = parseFloat(localStorage.getItem("taskEarnings") || "0");
+      taskEarnings += amount;
+      localStorage.setItem("taskEarnings", taskEarnings.toFixed(2));
+    }
+  </script>
+</body>
+  </html>
