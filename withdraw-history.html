@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>History</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="container"><h2>History</h2><div id="list"></div><a href="index.html"><button>🔙 Back</button></a></div>
+<script>
+let h= JSON.parse(localStorage.getItem("wdHistory")||"[]");
+if(h.length===0) document.getElementById("list").innerText="No history";
+else h.forEach(e=>{
+  document.getElementById("list").innerHTML+=`<p>${e.date}: ${e.amount} DOGE ➤ ${e.wallet}</p>`;
+});
+</script></body></html>
