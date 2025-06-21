@@ -1,33 +1,28 @@
-<!-- File: withdraw_history.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>📜 Withdraw History</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>.history-container {max-width:400px;margin:auto;padding:20px;background:#fff;border-radius:10px;} .status-processing{color:#e67e22;} .status-completed{color:#27ae60;}</style>
-</head>
-<body>
-  <div class="history-container">
-    <h2>📜 Withdraw History</h2>
+<!doctype html>
+<html>
+  <head>…css…</head>
+  <body>
     <div id="historyList"></div>
-    <button onclick="window.location='index.html'">⬅️ Back</button>
-  </div>
+    <button onclick="goBack()">⬅️ Back</button>
 
-  <script>
-  window.onload = () => {
-    let hist = JSON.parse(localStorage.getItem("withdrawHistory") || "[]");
-    let cont = document.getElementById("historyList");
-    cont.innerHTML = hist.length ? '' : "<p>No withdrawals yet.</p>";
-    hist.forEach(entry => {
-      let cls = entry.status=="Completed" ? "status-completed" : "status-processing";
-      cont.innerHTML += `<div style="margin-bottom:12px;padding:8px;border:1px solid #ddd;border-radius:6px;">
-        <strong>💰 ${entry.amount} DOGE -> ${entry.wallet}</strong><br>
-        <small>${entry.date}</small><br>
-        <span class="${cls}">${entry.status}</span>
-      </div>`;
-    });
-  };
-  </script>
-</body>
-    </html>
+    <script>
+      function loadHistory() {
+        const history = JSON.parse(localStorage.getItem("withdrawHistory")) || [];
+        let html = "";
+        if (history.length === 0) html = "<p>No withdraws yet.</p>";
+        else history.forEach(entry => {
+          html += `
+            <div class="history-entry">
+              <span>📤 Address: ${entry.wallet}</span>
+              <span>💰 Amount: ${entry.amount} DOGE</span>
+              <span>📅 Date: ${entry.date}</span>
+              <span>📌 Status: ${entry.status}</span>
+            </div>`;
+        });
+        document.getElementById("historyList").innerHTML = html;
+      }
+      function goBack() { window.location.href = "index.html"; }
+      window.onload = loadHistory;
+    </script>
+  </body>
+</html>
