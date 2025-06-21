@@ -1,10 +1,5 @@
-function getQueryParam(param) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(param);
-}
-
-const ref = getQueryParam("ref");
-if (ref) {
-  localStorage.setItem("ref", ref);
-  console.log("Referred by:", ref);
+function getReferral(){
+  const ref=localStorage.getItem("ref")||"ABC123"; // replace with real link
+  navigator.clipboard.writeText(ref);
+  alert("Referral link copied!");
 }
