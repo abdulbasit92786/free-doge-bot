@@ -1,0 +1,42 @@
+<!-- leaderboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🏆 Leaderboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>🏆 Top Token Earners</h2>
+  <ul id="leaderboard"></ul>
+
+  <script type="module">
+    import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { app } from './firebaseConfig.js'; // reuse config
+    const db = getDatabase(app);
+
+    async function loadLeaderboard() {
+      const snap = await get(ref(db, 'users'));
+      const users = [];
+      snap.forEach(childSnap => {
+        const uid = childSnap.key;
+        const data = childSnap.val();
+        if (data.tokens) {
+          users.push({ id: uid, tokens: data.tokens });
+        }
+      });
+
+      users.sort((a, b) => b.tokens - a.tokens);
+      const ul = document.getElementById('leaderboard');
+      ul.innerHTML = '';
+      users.slice(0, 10).forEach(u => {
+        const li = document.createElement('li');
+        li.textContent = `User ${u.id}: ${u.tokens} Tokens`;
+        ul.appendChild(li);
+      });
+    }
+
+    loadLeaderboard();
+  </script>
+</body>
+</html>
