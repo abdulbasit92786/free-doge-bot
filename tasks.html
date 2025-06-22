@@ -1,101 +1,40 @@
+<!-- Filename: task.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Watch Video - Earn DOGE</title>
+  <title>Watch & Earn - Free DOGE</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    .video-box {
-      margin: 20px auto;
-      width: 100%;
-      max-width: 360px;
-      background: #fff;
-      border-radius: 10px;
-      padding: 15px;
-    }
-
-    video {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    #claimBtn {
-      display: none;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: green;
-      color: white;
-      border: none;
-      border-radius: 8px;
-    }
-
-    #claimed {
-      color: green;
-      font-weight: bold;
-      display: none;
-    }
-  </style>
 </head>
 <body>
+
   <div class="container">
-    <h1>🎥 Watch Video - Earn DOGE</h1>
+    <h2>🎥 Watch & Earn</h2>
+    
+    <!-- ✅ Embedded Video -->
+    <video id="rewardVideo" width="100%" controls>
+      <source src="https://raw.githack.com/abdulbasit92786/free-doge-bot/2a5ada0da3d945ae4f0e79389c74dbd06783e402/simple.mp4" type="video/mp4">
+      آپ کا براؤزر ویڈیو نہیں چلا سکتا۔
+    </video>
 
-    <div class="video-box">
-      <video id="adVideo" controls>
-        <source src="sample.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-
-      <button id="claimBtn">🎁 Claim DOGE</button>
-      <p id="claimed">✅ Claimed! Reward added to your balance.</p>
-    </div>
+    <!-- 👇 Claim Button (initially hidden) -->
+    <button id="claimBtn" style="display: none;">🎁 Claim Reward</button>
   </div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getDatabase, ref, get, set, child } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyACjHqz0QKAH2OnSpomh3OioYUW1qfmd6w",
-      authDomain: "freedogeclam.firebaseapp.com",
-      projectId: "freedogeclam",
-      storageBucket: "freedogeclam.firebasestorage.app",
-      messagingSenderId: "764273012962",
-      appId: "1:764273012962:web:398a856b5b7c37c4396ebb",
-      measurementId: "G-MC0HWPRTNT"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-
-    const video = document.getElementById("adVideo");
+  <script>
+    const video = document.getElementById("rewardVideo");
     const claimBtn = document.getElementById("claimBtn");
-    const claimedText = document.getElementById("claimed");
-    let userID = "user_" + Math.floor(Math.random() * 1000000);
 
-    video.addEventListener("ended", () => {
+    video.addEventListener("ended", function () {
       claimBtn.style.display = "block";
     });
 
-    claimBtn.onclick = () => {
-      const userRef = ref(db, "users/" + userID);
-      get(child(ref(db), "users/" + userID)).then((snapshot) => {
-        let oldTaskEarnings = 0;
-        if (snapshot.exists()) {
-          oldTaskEarnings = snapshot.val().taskEarnings || 0;
-        }
-
-        set(userRef, {
-          taps: snapshot.val()?.taps || 0,
-          taskEarnings: oldTaskEarnings + 2,
-          refBonus: snapshot.val()?.refBonus || 0
-        });
-
-        claimedText.style.display = "block";
-        claimBtn.style.display = "none";
-      });
-    };
+    claimBtn.addEventListener("click", function () {
+      // ✅ You can modify this logic to call Telegram WebApp.sendData, etc.
+      alert("🎉 Reward Claimed Successfully!");
+    });
   </script>
+
 </body>
-      </html>
+</html>
