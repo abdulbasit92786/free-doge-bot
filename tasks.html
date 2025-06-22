@@ -1,23 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><title>Earn Tasks | Free DOGE</title><link rel="stylesheet" href="style.css"></head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Watch Video - Earn DOGE</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .video-box {
+      margin: 20px auto;
+      width: 100%;
+      max-width: 360px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    #claimBtn {
+      display: none;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: green;
+      color: white;
+      border: none;
+      border-radius: 8px;
+    }
+
+    #claimed {
+      color: green;
+      font-weight: bold;
+      display: none;
+    }
+  </style>
+</head>
 <body>
   <div class="container">
-    <h2>🧠 Earn by Completing Tasks</h2>
-    <div class="task">
-      <h3>🎥 Watch Video (1 DOGE)</h3>
-      <iframe id="videoTask" width="100%" height="200" src="https://www.youtube.com/embed/6PNL6h4IxeI" frameborder="0" allowfullscreen></iframe>
-      <button id="claimVideo" disabled>✅ Claim</button>
-    </div>
-    <div class="task">
-      <h3>🌐 Visit Website (0.5 DOGE)</h3>
-      <a href="https://abdulbasit92786.github.io/free-doge-bot" target="_blank"><button id="visitBtn">🌍 Visit</button></a>
-    </div>
+    <h1>🎥 Watch Video - Earn DOGE</h1>
 
-    <a href="index.html"><button>🔙 Back</button></a>
+    <div class="video-box">
+      <video id="adVideo" controls>
+        <source src="sample.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <button id="claimBtn">🎁 Claim DOGE</button>
+      <p id="claimed">✅ Claimed! Reward added to your balance.</p>
+    </div>
   </div>
 
-  <script src="firebase-config.js"></script>
-  <script src="tasks.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, get, set, child } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyACjHqz0QKAH2OnSpomh3OioYUW1qfmd6w",
+      authDomain: "freedogeclam.firebaseapp.com",
+      projectId: "freedogeclam",
+      storageBucket: "freedogeclam.firebasestorage.app",
+      messagingSenderId: "764273012962",
+      appId: "1:764273012962:web:398a856b5b7c37c4396ebb",
+      measurementId: "G-MC0HWPRTNT"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const video = document.getElementById("adVideo");
+    const claimBtn = document.getElementById("claimBtn");
+    const claimedText = document.getElementById("claimed");
+    let userID = "user_" + Math.floor(Math.random() * 1000000);
+
+    video.addEventListener("ended", () => {
+      claimBtn.style.display = "block";
+    });
+
+    claimBtn.onclick = () => {
+      const userRef = ref(db, "users/" + userID);
+      get(child(ref(db), "users/" + userID)).then((snapshot) => {
+        let oldTaskEarnings = 0;
+        if (snapshot.exists()) {
+          oldTaskEarnings = snapshot.val().taskEarnings || 0;
+        }
+
+        set(userRef, {
+          taps: snapshot.val()?.taps || 0,
+          taskEarnings: oldTaskEarnings + 2,
+          refBonus: snapshot.val()?.refBonus || 0
+        });
+
+        claimedText.style.display = "block";
+        claimBtn.style.display = "none";
+      });
+    };
+  </script>
 </body>
-</html>
+      </html>
