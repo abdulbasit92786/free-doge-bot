@@ -1,28 +1,19 @@
-<!doctype html>
-<html>
-  <head>…css…</head>
-  <body>
-    <div id="historyList"></div>
-    <button onclick="goBack()">⬅️ Back</button>
-
-    <script>
-      function loadHistory() {
-        const history = JSON.parse(localStorage.getItem("withdrawHistory")) || [];
-        let html = "";
-        if (history.length === 0) html = "<p>No withdraws yet.</p>";
-        else history.forEach(entry => {
-          html += `
-            <div class="history-entry">
-              <span>📤 Address: ${entry.wallet}</span>
-              <span>💰 Amount: ${entry.amount} DOGE</span>
-              <span>📅 Date: ${entry.date}</span>
-              <span>📌 Status: ${entry.status}</span>
-            </div>`;
-        });
-        document.getElementById("historyList").innerHTML = html;
-      }
-      function goBack() { window.location.href = "index.html"; }
-      window.onload = loadHistory;
-    </script>
-  </body>
-</html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Withdraw History</title><link rel="stylesheet" href="style.css"></head>
+<body>
+  <div class="container"><h2>📜 Withdraw History</h2><div id="hist"></div><a href="index.html"><button>Back</button></a></div>
+  <script src="firebase-config.js"></script>
+  <script>
+    import { db } from "./firebase-config.js";
+    import { collection, query, orderBy, getDocs } from "firebase/firestore";
+    async function loadHist(){
+      let qc = query(collection(db, "withdrawals"), orderBy("date","desc"));
+      let snap = await getDocs(qc);
+      let h = document.getElementById("hist");
+      snap.forEach(doc=>{
+        let d = doc.data();
+        h.innerHTML += `<p>${d.date}: ${d.amount} DOGE ➜ ${d.wallet} (${d.status})</p>`;
+      });
+    }
+    loadHist();
+  </script>
+</body></html>
