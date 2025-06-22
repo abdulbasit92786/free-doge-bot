@@ -1,25 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Withdraw - Free Doge</title>
+  <title>Withdraw History | Free Doge</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js"></script>
-  <script src="withdraw.js" defer></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyACjHqz0QKAH2OnSpomh3OioYUW1qfmd6w",
+      authDomain: "freedogeclam.firebaseapp.com",
+      databaseURL: "https://freedogeclam-default-rtdb.firebaseio.com",
+      projectId: "freedogeclam",
+      storageBucket: "freedogeclam.appspot.com",
+      messagingSenderId: "764273012962",
+      appId: "1:764273012962:web:398a856b5b7c37c4396ebb",
+      measurementId: "G-MC0HWPRTNT"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const userId = Telegram.WebApp.initDataUnsafe.user.id;
+    const list = document.getElementById("withdrawList");
+
+    const withdrawRef = ref(db, `withdrawals/${userId}`);
+    onValue(withdrawRef, (snapshot) => {
+      const data = snapshot.val();
+      list.innerHTML = "";
+
+      if (!data) {
+        list.innerHTML = "<p>No withdrawals found.</p>";
+        return;
+      }
+
+      const entries = Object.entries(data).reverse(); // latest first
+      for (const [key, item] of entries) {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <strong>💸 Amount:</strong> ${item.amount}<br>
+          <strong>🏦 Wallet:</strong> ${item.wallet}<br>
+          <strong>⏱️ Status:</strong> ${item.status}<br>
+          <hr>
+        `;
+        list.appendChild(li);
+      }
+    });
+  </script>
 </head>
 <body>
-  <div class="container">
-    <h1>💸 Withdraw Your Doge</h1>
-    <p id="balance">Balance: Loading...</p>
-
-    <label for="wallet">DOGE Wallet Address:</label>
-    <input type="text" id="wallet" placeholder="Enter your Doge address">
-
-    <button onclick="requestWithdraw()">Request Withdraw</button>
-
-    <h3>📜 Withdraw History</h3>
-    <ul id="historyList">Loading...</ul>
+  <div class="card">
+    <h2>Withdraw History</h2>
+    <ul id="withdrawList"></ul>
   </div>
 </body>
-      </html>
+</html>
