@@ -1,0 +1,33 @@
+<!-- convert.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Token Conversion</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>🎯 Admin Token Converter</h2>
+  <input type="text" id="userId" placeholder="Enter User ID">
+  <input type="number" id="tokens" placeholder="Tokens to Add">
+  <button onclick="convertTokens()">Convert</button>
+
+  <script type="module">
+    import { getDatabase, ref, set, get, child, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { app } from './firebaseConfig.js'; // reuse your config
+    const db = getDatabase(app);
+
+    window.convertTokens = async function () {
+      const userId = document.getElementById('userId').value;
+      const tokens = parseInt(document.getElementById('tokens').value);
+      if (!userId || isNaN(tokens)) return alert("Missing fields");
+
+      const userRef = ref(db, 'users/' + userId);
+      const snap = await get(userRef);
+      const current = snap.exists() ? snap.val().tokens || 0 : 0;
+      await update(userRef, { tokens: current + tokens });
+      alert("✅ Converted successfully");
+    };
+  </script>
+</body>
+</html>
