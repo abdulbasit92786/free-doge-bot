@@ -1,12 +1,22 @@
-let taps = parseInt(localStorage.getItem("taps")||"0");
-let taskEarn = parseFloat(localStorage.getItem("taskEarnings")||"0");
-let refEarn = parseFloat(localStorage.getItem("refEarnings")||"0");
+let tapCount = 0;
+let taskEarnings = 0.0;
 
-document.getElementById("tapCount").innerText = taps;
-document.getElementById("taskEarnings").innerText = taskEarn.toFixed(2);
-document.getElementById("refEarnings").innerText = refEarn.toFixed(2);
+function handleTap() {
+  tapCount += 1;
+  document.getElementById('tapCount').innerText = tapCount;
+}
 
-document.getElementById("doge").addEventListener("click",()=>{
-  taps++; localStorage.setItem("taps",taps);
-  document.getElementById("tapCount").innerText = taps;
+// Show claim button only after video is watched
+const video = document.getElementById("earnVideo");
+const claimBtn = document.getElementById("claimBtn");
+
+video.addEventListener("ended", () => {
+  claimBtn.style.display = "block";
 });
+
+function claimTask() {
+  taskEarnings += 0.5; // You can change this reward
+  document.getElementById("taskEarnings").innerText = taskEarnings.toFixed(2);
+  claimBtn.style.display = "none";
+  alert("🎉 Reward Claimed Successfully!");
+}
