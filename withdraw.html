@@ -1,14 +1,25 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Withdraw | Free DOGE</title><link rel="stylesheet" href="style.css"></head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Withdraw - Free Doge</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js"></script>
+  <script src="withdraw.js" defer></script>
+</head>
 <body>
   <div class="container">
-    <h1>💸 Withdraw DOGE</h1>
-    <form id="wdForm">
-      <input type="text" id="wallet" placeholder="Doge Wallet Address"><br>
-      <input type="number" id="amount" placeholder="Min 10 DOGE"><br>
-      <button type="submit">🚀 Request Withdraw</button>
-    </form>
-    <a href="index.html"><button>🔙 Back</button></a>
+    <h1>💸 Withdraw Your Doge</h1>
+    <p id="balance">Balance: Loading...</p>
+
+    <label for="wallet">DOGE Wallet Address:</label>
+    <input type="text" id="wallet" placeholder="Enter your Doge address">
+
+    <button onclick="requestWithdraw()">Request Withdraw</button>
+
+    <h3>📜 Withdraw History</h3>
+    <ul id="historyList">Loading...</ul>
   </div>
-  <script src="firebase-config.js"></script>
-  <script src="withdraw.js"></script>
-</body></html>
+</body>
+      </html>
