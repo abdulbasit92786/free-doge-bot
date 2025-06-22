@@ -1,6 +1,6 @@
-body { margin:0; font-family:'Segoe UI'; text-align:center; background: linear-gradient(to bottom,#f9d976,#f39f86); }
-.container { padding:20px; }
-img#doge { width:180px; cursor:pointer; transition:0.2s; }
-img#doge:active { transform:scale(1.1); }
-button { padding:10px 20px; font-size:16px; background:#ff9900; border:none; border-radius:6px; color:white; cursor:pointer; }
-button:hover { background:#e68a00; }
+body{font-family:sans-serif;background:#f3f3f3;color:#333;}
+.container{width:90%;max-width:400px;margin:30px auto;padding:20px;background:#fff;border-radius:8px;}
+button{padding:10px;margin:5px;background:#ff9900;border:none;border-radius:5px;color:#fff;cursor:pointer;}
+button:disabled{background:#ccc;cursor:not-allowed;}
+.task{margin:15px 0;padding:15px;border:1px #ddd solid;border-radius:5px;}
+iframe{margin-bottom:10px;}
