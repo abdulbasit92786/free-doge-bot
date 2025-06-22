@@ -1,19 +1,12 @@
-// Withdraw request فنکشن
-function submitWithdrawRequest(wallet, amount) {
-  let balance = parseFloat(localStorage.getItem("taskEarnings") || "0");
-  if (!wallet || amount < 10) return; // 10 ڈوج کم از کم ویلیو
+let taps = parseInt(localStorage.getItem("taps")||"0");
+let taskEarn = parseFloat(localStorage.getItem("taskEarnings")||"0");
+let refEarn = parseFloat(localStorage.getItem("refEarnings")||"0");
 
-  balance -= amount;
-  localStorage.setItem("taskEarnings", balance.toFixed(2));
+document.getElementById("tapCount").innerText = taps;
+document.getElementById("taskEarnings").innerText = taskEarn.toFixed(2);
+document.getElementById("refEarnings").innerText = refEarn.toFixed(2);
 
-  let history = JSON.parse(localStorage.getItem("withdrawHistory")) || [];
-  history.push({
-    wallet,
-    amount,
-    status: "Processing",
-    date: new Date().toLocaleString()
-  });
-  localStorage.setItem("withdrawHistory", JSON.stringify(history));
-
-  alert(`✅ Withdraw Requested: ${amount} DOGE\n📌 Status: Processing`);
-}
+document.getElementById("doge").addEventListener("click",()=>{
+  taps++; localStorage.setItem("taps",taps);
+  document.getElementById("tapCount").innerText = taps;
+});
