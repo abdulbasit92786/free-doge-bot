@@ -1,65 +1,23 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8" />
-  <title>🎥 Watch Video Task</title>
-  <style>
-    .container { max-width: 600px; margin: auto; padding: 20px; font-family: sans-serif; }
-    .btn { margin-top: 10px; padding: 10px; border: none; background: #27ae60; color: white; border-radius: 5px; cursor: pointer; }
-    .btn:disabled { background: #ccc; cursor: not-allowed; }
-  </style>
-</head>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Earn Tasks | Free DOGE</title><link rel="stylesheet" href="style.css"></head>
 <body>
   <div class="container">
-    <h2>🎥 Watch the Video (Earn 1 DOGE)</h2>
-    <div id="player"></div>
-    <button class="btn" id="claimBtn" disabled>✅ Claim Reward</button>
-    <br><br>
-    <a href="index.html"><button class="btn">⬅️ Back</button></a>
+    <h2>🧠 Earn by Completing Tasks</h2>
+    <div class="task">
+      <h3>🎥 Watch Video (1 DOGE)</h3>
+      <iframe id="videoTask" width="100%" height="200" src="https://www.youtube.com/embed/6PNL6h4IxeI" frameborder="0" allowfullscreen></iframe>
+      <button id="claimVideo" disabled>✅ Claim</button>
+    </div>
+    <div class="task">
+      <h3>🌐 Visit Website (0.5 DOGE)</h3>
+      <a href="https://abdulbasit92786.github.io/free-doge-bot" target="_blank"><button id="visitBtn">🌍 Visit</button></a>
+    </div>
+
+    <a href="index.html"><button>🔙 Back</button></a>
   </div>
 
-  <script>
-    let player;
-    let secondsWatched = 0;
-    let interval;
-
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('player', {
-        height: '315',
-        width: '100%',
-        videoId: '6PNL6h4IxeI', // ← یہاں اپنی ویڈیو ID رکھیں
-        events: {
-          'onStateChange': onPlayerStateChange
-        }
-      });
-    }
-
-    function onPlayerStateChange(event) {
-      if (event.data == YT.PlayerState.PLAYING) {
-        interval = setInterval(() => {
-          secondsWatched++;
-          console.log("⏱️ Watched: " + secondsWatched + " sec");
-
-          if (secondsWatched >= 30) {
-            clearInterval(interval);
-            document.getElementById("claimBtn").disabled = false;
-          }
-        }, 1000);
-      } else {
-        clearInterval(interval);
-      }
-    }
-
-    document.getElementById("claimBtn").addEventListener("click", () => {
-      alert("✅ 1 DOGE reward added!");
-      let earned = parseFloat(localStorage.getItem("taskEarnings") || "0");
-      earned += 1;
-      localStorage.setItem("taskEarnings", earned.toFixed(2));
-      document.getElementById("claimBtn").disabled = true;
-    });
-  </script>
-
-  <!-- Load YouTube Iframe API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="firebase-config.js"></script>
+  <script src="tasks.js"></script>
 </body>
 </html>
