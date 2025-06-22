@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>🐶 Free DOGE - Tap to Earn</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free DOGE – Tap to Earn</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>🐶 Free DOGE</h1>
-    <h3>Tap to Earn!</h3>
-    <img src="doge.png" id="doge" alt="doge image">
-    <p>Total DOGE (Taps): <span id="tapCount">0</span></p>
-    <p>📊 Task Earnings: <span id="taskEarnings">0</span> DOGE</p>
-    <p>📣 Referral Bonus: <span id="refEarnings">0</span> DOGE</p>
 
-    <div class="buttons">
-      <button id="startBtn">/start</button>
-      <a href="tasks.html"><button>🧠 Tasks</button></a>
-      <a href="withdraw.html"><button>💸 Withdraw</button></a>
-      <a href="withdraw-history.html"><button>📜 Withdraw History</button></a>
-      <button onclick="getReferral()">📣 Invite Friends</button>
+    <h1>🐶 Free DOGE</h1>
+    <p>Tap to Earn!</p>
+
+    <img src="doge.png" alt="Tap to Earn Doge" class="doge-image" onclick="handleTap()">
+
+    <div class="stats">
+      <p>Total DOGE (Taps): <span id="tapCount">0</span></p>
+      <p>📊 Task Earnings: <span id="taskEarnings">0.00</span> DOGE</p>
+      <p>🎁 Referral Bonus: <span id="refBonus">0.000</span> DOGE</p>
     </div>
 
-    <p id="referralLink"></p>
+    <div class="video-section">
+      <p>🎥 Watch the video to earn:</p>
+      <video id="earnVideo" width="100%" controls>
+        <source src="earnvideo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <button id="claimBtn" onclick="claimTask()" style="display: none;">✅ Claim Reward</button>
+    </div>
+
+    <div class="buttons">
+      <button onclick="location.href='/start'">/start</button>
+      <button onclick="location.href='/tasks'">📋 Tasks</button>
+      <button onclick="location.href='/withdraw'">💸 Withdraw</button>
+      <button onclick="location.href='/withdraw-history'">📜 Withdraw History</button>
+      <button onclick="location.href='/invite'">👥 Invite Friends</button>
+    </div>
+
   </div>
 
-  <script src="firebase-config.js"></script>
   <script src="main.js"></script>
-  <script src="referral.js"></script>
 </body>
 </html>
