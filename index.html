@@ -1,44 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free DOGE – Tap to Earn</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free DOGE - Tap to Earn</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-
     <h1>🐶 Free DOGE</h1>
-    <p>Tap to Earn!</p>
-
-    <img src="doge.png" alt="Tap to Earn Doge" class="doge-image" onclick="handleTap()">
+    <p class="tagline">Tap to Earn!</p>
+    
+    <div class="doge-box" onclick="tapDoge()">
+      <img src="doge.png" alt="Tap Doge" class="doge-img" />
+      <p class="tap-label">TAP TO EARN</p>
+    </div>
 
     <div class="stats">
       <p>Total DOGE (Taps): <span id="tapCount">0</span></p>
-      <p>📊 Task Earnings: <span id="taskEarnings">0.00</span> DOGE</p>
-      <p>🎁 Referral Bonus: <span id="refBonus">0.000</span> DOGE</p>
+      <p>📊 Task Earnings: <span id="taskEarnings">0</span> DOGE</p>
+      <p>📣 Referral Bonus: <span id="refBonus">0</span> DOGE</p>
     </div>
 
-    <div class="video-section">
-      <p>🎥 Watch the video to earn:</p>
-      <video id="earnVideo" width="100%" controls>
-        <source src="earnvideo.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <button id="claimBtn" onclick="claimTask()" style="display: none;">✅ Claim Reward</button>
+    <div class="btns">
+      <button onclick="location.href='tasks.html'">🧠 Tasks</button>
+      <button onclick="location.href='withdraw.html'">💸 Withdraw</button>
+      <button onclick="location.href='history.html'">📋 Withdraw History</button>
+      <button onclick="location.href='invite.html'">🤝 Invite Friends</button>
     </div>
-
-    <div class="buttons">
-      <button onclick="location.href='/start'">/start</button>
-      <button onclick="location.href='/tasks'">📋 Tasks</button>
-      <button onclick="location.href='/withdraw'">💸 Withdraw</button>
-      <button onclick="location.href='/withdraw-history'">📜 Withdraw History</button>
-      <button onclick="location.href='/invite'">👥 Invite Friends</button>
-    </div>
-
   </div>
 
-  <script src="main.js"></script>
+  <script type="module" src="main.js"></script>
 </body>
-</html>
+  </html>
