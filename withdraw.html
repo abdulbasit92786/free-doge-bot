@@ -1,51 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>💸 Withdraw</title>
-  <style>
-    body { font-family: sans-serif; text-align: center; padding: 25px; }
-    .btn { padding: 12px 25px; background: #27ae60; color: white; border: none; border-radius: 6px; cursor: pointer; }
-    input { padding: 10px; width: 80%; margin: 10px 0; }
-  </style>
-</head>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Withdraw | Free DOGE</title><link rel="stylesheet" href="style.css"></head>
 <body>
-
-  <h2>💸 Withdraw Your Earnings</h2>
-  <div id="withdrawForm"></div>
-
-  <br><a href="index.html"><button class="btn">⬅️ Back</button></a>
-
-  <script>
-    const earned = parseFloat(localStorage.getItem("taskEarnings") || "0");
-
-    if (earned >= 5) {
-      document.getElementById("withdrawForm").innerHTML = `
-        <p>🎉 You are eligible to withdraw!</p>
-        <p>Your Task Earnings: <b>${earned.toFixed(2)} DOGE</b></p>
-        <input type="text" id="wallet" placeholder="Enter your Dogecoin Wallet Address" /><br>
-        <button class="btn" onclick="submitWithdraw()">🚀 Submit Withdraw</button>
-      `;
-    } else {
-      document.getElementById("withdrawForm").innerHTML = `
-        <p>⚠️ You need at least 5 DOGE from task earnings to withdraw.</p>
-        <p>Current Task Earnings: <b>${earned.toFixed(2)} DOGE</b></p>
-        <p>💡 Complete more tasks to unlock withdrawal!</p>
-      `;
-    }
-
-    function submitWithdraw() {
-      const wallet = document.getElementById("wallet").value.trim();
-      if (!wallet) {
-        alert("❌ Please enter a valid wallet address.");
-        return;
-      }
-
-      alert("✅ Withdraw submitted! Please wait for manual approval.");
-      localStorage.setItem("taskEarnings", "0"); // Reset after submission
-
-      // Optional: Store request in Firestore, send to Admin etc.
-    }
-  </script>
-</body>
-  </html>
+  <div class="container">
+    <h1>💸 Withdraw DOGE</h1>
+    <form id="wdForm">
+      <input type="text" id="wallet" placeholder="Doge Wallet Address"><br>
+      <input type="number" id="amount" placeholder="Min 10 DOGE"><br>
+      <button type="submit">🚀 Request Withdraw</button>
+    </form>
+    <a href="index.html"><button>🔙 Back</button></a>
+  </div>
+  <script src="firebase-config.js"></script>
+  <script src="withdraw.js"></script>
+</body></html>
